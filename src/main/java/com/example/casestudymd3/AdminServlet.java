@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "AdminServlet",urlPatterns = "/admin")
+@WebServlet(name = "AdminServlet",urlPatterns = "/admin/list")
 public class AdminServlet extends HttpServlet {
 
     private UserDAO userDAO;
