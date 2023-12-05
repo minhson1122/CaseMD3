@@ -46,10 +46,6 @@
             <input type="text" class="form-control" id="full_name" name="full_name" required>
         </div>
         <div class="mb-3">
-            <label for="phone_number" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
-        </div>
-        <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>

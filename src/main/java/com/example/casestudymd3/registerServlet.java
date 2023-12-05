@@ -26,14 +26,15 @@ public class registerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String username = req.getParameter("username");
-            String email = req.getParameter("email");
-
-            User user = new User();
-            user.setUserName(username);
-            user.setEmail(email);
-
-        UserDAO userDAO = new UserDAO();
+//            String username = req.getParameter("username");
+//            String email = req.getParameter("email");
+//
+//
+//            User user = new User(name, phone, email, address, username, password);
+//            user.setUserName(username);
+//            user.setEmail(email);
+//
+//            UserDAO userDAO = new UserDAO();
 
 
     }

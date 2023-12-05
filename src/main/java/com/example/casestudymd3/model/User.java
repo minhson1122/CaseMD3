@@ -3,19 +3,22 @@ package com.example.casestudymd3.model;
 public class User {
     private int id;
     private String name;
-    private String phone;
     private String email;
     private String address;
     private String userName;
     private String password;
 
-    public User() {
+    public User(String name, String email, String address, String userName, String password) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.userName = userName;
+        this.password = password;
     }
 
-    public User(int id, String name, String phone, String email, String address, String userName, String password) {
+    public User(int id, String name, String email, String address, String userName, String password) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
         this.email = email;
         this.address = address;
         this.userName = userName;
@@ -38,13 +41,6 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getEmail() {
         return email;
