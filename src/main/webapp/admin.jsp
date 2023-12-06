@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>Đây là trang admin</p>
-<a href="/list.jsp">Ấn vào đây để xem list users</a>
-<a href="/listgamedata">Ấn vào đây để xem list games</a>
+<a href="admin/listuser">Ấn vào đây để xem list users</a>
+<a href="admin/listgamedata">Ấn vào đây để xem list games</a>
 </body>
 </html>

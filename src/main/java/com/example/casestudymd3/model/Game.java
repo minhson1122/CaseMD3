@@ -8,13 +8,13 @@ public class Game {
     private int price;
     private String description;
     private String genre;
-    private double rating;
+    private String rating;
     private int totalDownload;
     private String developer;
-    private Date releaseDate;
+    private String releaseDate;
     private boolean purchased;
 
-    public Game(String title, int price, String description, String genre, double rating, int totalDownload, String developer, Date releaseDate, boolean purchased) {
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased) {
         this.title = title;
         this.price = price;
         this.description = description;
@@ -26,7 +26,7 @@ public class Game {
         this.purchased = purchased;
     }
 
-    public Game(int id, String title, int price, String description, String genre, double rating, int totalDownload, String developer, Date releaseDate, boolean purchased) {
+    public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -37,6 +37,16 @@ public class Game {
         this.developer = developer;
         this.releaseDate = releaseDate;
         this.purchased = purchased;
+    }
+
+    public Game(String title, int price, String description, String genre, String rating, String developer, String releaseDate) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
     }
 
     public int getId() {
@@ -79,11 +89,11 @@ public class Game {
         this.genre = genre;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -103,11 +113,11 @@ public class Game {
         this.developer = developer;
     }
 
-    public java.sql.Date getReleaseDate() {
-        return (java.sql.Date) releaseDate;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

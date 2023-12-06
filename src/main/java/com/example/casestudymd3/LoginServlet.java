@@ -46,7 +46,8 @@ public class LoginServlet extends HttpServlet {
                 sessions.setAttribute("username", username);
 
                 // Chuyển hướng đến trang home.jsp
-                resp.sendRedirect("/admin.jsp");
+//                resp.sendRedirect("/admin.jsp");
+                resp.sendRedirect(req.getContextPath() + "/admin");
             }
         }
     }
