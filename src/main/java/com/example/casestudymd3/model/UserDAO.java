@@ -12,11 +12,12 @@ public class UserDAO implements IUserDAO {
     String username = "root";
     String password = "Trung123@";
 
-    private static final String INSERT_USER_SQL = "INSERT INTO user(name,email,address,username,password) VALUES (?,?,?,?,?)";
-    private static final String SELECT_USER_BY_ID = "SELECT id,name,email,address,username,password FROM user WHERE id = ?";
+    private static final String INSERT_USER_SQL = "INSERT INTO user(name,email,address,username,password,role) VALUES (?,?,?,?,?,?)";
+    private static final String SELECT_USER_BY_ID = "SELECT id,name,email,address,username,password,role FROM user WHERE id = ?";
     private static final String SELECT_USER_ALL = "SELECT * FROM user";
     private static final String DELETE_USER_SQL = "DELETE FROM user WHERE id = ?";
-    private static final String UPDATE_USER_SQL = "UPDATE user SET name = ?, email = ?, address = ?,username = ?,password = ? WHERE id = ?";
+    private static final String UPDATE_USER_SQL = "UPDATE user SET name = ?, email = ?, address = ?,username = ?,password = ?,role = ? WHERE id = ?";
+
 
 
     protected Connection getConnect(){
@@ -44,6 +45,7 @@ public class UserDAO implements IUserDAO {
             statement.setString(3,user.getAddress());
             statement.setString(4,user.getUserName());
             statement.setString(5,user.getPassword());
+            statement.setString(6,user.getRole());
             statement.executeUpdate();
             System.out.println("da them thanhc cong");
         }catch (SQLException e){
@@ -66,7 +68,8 @@ public class UserDAO implements IUserDAO {
                 String address = rs.getString("address");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                user = new User(id,name,email, address, username, password);
+                String role = rs.getString("role");
+                user = new User(id,name,email, address, username, password,role);
 
             }
         } catch (SQLException e) {
@@ -91,7 +94,9 @@ public class UserDAO implements IUserDAO {
                 String address = rs.getString("address");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                users.add(new User(id,name,email, address, username, password));
+                String role = rs.getString("role");
+
+                users.add(new User(id,name,email, address, username, password,role));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -121,12 +126,51 @@ public class UserDAO implements IUserDAO {
             statement.setString(3, user.getAddress());
             statement.setString(4, user.getUserName());
             statement.setString(5, user.getPassword());
-            statement.setInt(6,user.getId());
+            statement.setString(6, user.getRole());
+            statement.setInt(7,user.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
     }
+
+    @Override
+    public boolean checkUser(String username, String password) throws SQLException {
+        try (Connection connection = getConnect();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE username = '" + username + "' AND password='" + password + "'");) {
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkRegister(String email,String username) throws SQLException {
+
+        try (Connection connection = getConnect();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE email = '" + email + "' OR username='" + username + "'");) {
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean checkAccountAdmin(String username,String password,String role) throws SQLException {
+        try (Connection connection = getConnect();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE username = '" + username + "' AND password= '"+ password + "' AND role = 'admin'");) {
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
 
 
 }

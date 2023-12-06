@@ -51,9 +51,16 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="text" name="password" class="form-control" id="password" >
                     </div>
+                    <div>
+                        <label for="role">Role:</label>
+                            <select id="role" name="role">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                            </select><br>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="/admin" class="btn btn-info">Cancel</a>
+                    <a href="/admin/listuserdata" class="btn btn-info">Cancel</a>
                 </form>
             </div>
         </div>

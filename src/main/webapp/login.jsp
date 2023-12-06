@@ -37,7 +37,7 @@
 </head>
 <body>
 <div class="login-container">
-    <h4 class="text-center">Đăng nhập</h4>
+    <h4 class="text-center">Đăng Nhập</h4>
 
     <%-- Kiểm tra xem có thông báo lỗi không --%>
     <p class="alert-danger error-message" role="alert">
@@ -54,13 +54,6 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
             <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="role">Role:</label>
-            <select id="role" name="role">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-            </select><br>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Login</button>

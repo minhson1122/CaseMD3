@@ -24,11 +24,11 @@
                 <c:out value="${message}"></c:out>
             </div>
             <div class="card-body">
-                <form action="${pageContext.request.contextPath}/admin?action=update&id=<c:out value="${user.getId()}"/>" method="post">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Id</label>
-                        <input type="text" name="id" value="<c:out value="${user.getId()}"/>" class="form-control" id="id" aria-describedby="emailHelp">
-                    </div>
+                <form action="${pageContext.request.contextPath}/admin/listuserdata?action=update&id=<c:out value="${user.getId()}"/>" method="post">
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="exampleInputEmail1" class="form-label">Id</label>--%>
+<%--                        <input type="text" name="id" value="<c:out value="${user.getId()}"/>" class="form-control" id="id" aria-describedby="emailHelp">--%>
+<%--                    </div>--%>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
                         <input type="text" name="name" value="<c:out value="${user.getName()}"/>" class="form-control" id="" aria-describedby="emailHelp">
@@ -49,15 +49,15 @@
                         <label for="" class="form-label">Password</label>
                         <input type="text" name="password" value="<c:out value="${user.getPassword()}"/>" class="form-control" id="password">
                     </div>
-<%--                    <div class="mb-3">--%>
-<%--                        <label for="" class="form-label">Role</label>--%>
-<%--                        <select name="role" id="role">--%>
-<%--                            <option <c:if test="${user.getRole() == 'admin'}"> selected </c:if> value="admin">Admin</option>--%>
-<%--                            <option <c:if test="${user.getRole() == 'user'}"> selected </c:if>  value="user">User</option>--%>
-<%--                        </select>--%>
-<%--                    </div>--%>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Role</label>
+                        <select name="role" id="role">
+                            <option <c:if test="${user.getRole() == 'admin'}"> selected </c:if> value="admin">Admin</option>
+                            <option <c:if test="${user.getRole() == 'user'}"> selected </c:if>  value="user">User</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="/admin" class="btn btn-info">Cancel</a>
+                    <a href="/admin/listuserdata" class="btn btn-info">Cancel</a>
                 </form>
             </div>
         </div>

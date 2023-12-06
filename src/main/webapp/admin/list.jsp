@@ -21,9 +21,10 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-6 title-text">
+                    <div class="col-md-12 title-text">
                         <h1 style="text-align: center">Danh Sach Khach Hang</h1>
-                        <a href="/admin?action=create" class="btn btn-success">Add new</a>
+                        <a href="?action=create" class="btn btn-success">Add new</a>
+                        <a href="/home" class="btn btn-success">Trang Chu</a>
 
                     </div>
 <%--                    <div class="col-md-4">--%>
@@ -47,6 +48,7 @@
                         <th scope="col">Address</th>
                         <th scope="col">UserName</th>
                         <th scope="col">Password</th>
+                        <th scope="col">Role</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -59,10 +61,11 @@
                             <td><c:out value="${user.getAddress()}"/></td>
                             <td><c:out value="${user.getUserName()}"/></td>
                             <td><c:out value="${user.getPassword()}"/></td>
+                            <td><c:out value="${user.getRole()}"/></td>
 
                             <td>
-                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}/admin?action=delete&id=<c:out value="${user.getId()}"/>" class="btn btn-danger">Delete</a>
-                                <a href="${pageContext.request.contextPath}/admin?action=update&id=<c:out value="${user.getId()}"/>" class="btn btn-primary">Update</a>
+                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}?action=delete&id=<c:out value="${user.getId()}"/>" class="btn btn-danger">Delete</a>
+                                <a href="${pageContext.request.contextPath}?action=update&id=<c:out value="${user.getId()}"/>" class="btn btn-primary">Update</a>
                             </td>
                         </tr>
                     </c:forEach>

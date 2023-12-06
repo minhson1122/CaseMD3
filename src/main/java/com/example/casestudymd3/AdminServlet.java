@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "AdminServlet",urlPatterns = "/admin")
+@WebServlet(name = "AdminServlet",urlPatterns = "/admin/listuserdata")
 public class AdminServlet extends HttpServlet {
 
     private UserDAO userDAO;
@@ -75,6 +75,13 @@ public class AdminServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "delete":
+                try {
+                    deleteUser(req,resp);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 break;
         }
@@ -93,8 +100,9 @@ public class AdminServlet extends HttpServlet {
         String address = req.getParameter("address");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String role = req.getParameter("role");
 
-        User userNew = new User(name,email, address, username, password);
+        User userNew = new User(name,email, address, username, password,role);
 
         userDAO.insertUser(userNew);
         req.setAttribute("message","Da them thanh cong !");
@@ -103,8 +111,10 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws Exception,ServletException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/add.jsp");
-        dispatcher.forward(req, resp);
+//        resp.sendRedirect("/listuserdata?action=create");
+
+        RequestDispatcher view = req.getRequestDispatcher("/admin/add.jsp");
+        view.forward(req,resp);
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException,SQLException,IOException{
@@ -114,18 +124,19 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("listUsers",listUsers);
         RequestDispatcher view = request.getRequestDispatcher("/admin/list.jsp");
         view.forward(request,response);
+//        response.sendRedirect("/admin/listuserdata");
     }
 
     private void updateUser(HttpServletRequest request,HttpServletResponse response) throws SQLException,IOException,ServletException {
-
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
 
-        User userNew = new User(id,name,email,address,username,password);
+        User userNew = new User(id,name,email,address,username,password,role);
         userDAO.updateUser(userNew);
         request.setAttribute("message","Da sua thanh cong !");
         RequestDispatcher view = request.getRequestDispatcher("/admin/edit.jsp");

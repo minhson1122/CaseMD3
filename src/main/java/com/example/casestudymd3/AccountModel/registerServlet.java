@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "registerServlet",urlPatterns = "/account/register")
 public class registerServlet extends HttpServlet {
+    private UserDAO userDAO;
+
     @Override
     public void init() throws ServletException {
-        super.init();
+        this.userDAO = new UserDAO();
     }
 
     @Override
@@ -26,15 +29,28 @@ public class registerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//            String username = req.getParameter("username");
-//            String email = req.getParameter("email");
-//
-//
-//            User user = new User(name, phone, email, address, username, password);
-//            user.setUserName(username);
-//            user.setEmail(email);
-//
-//            UserDAO userDAO = new UserDAO();
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String address = req.getParameter("address");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String role = req.getParameter("role");
+        User userNew = new User(name,email,address,username,password,role);
+
+        try {
+            if (!userDAO.checkRegister(email,username)){
+                req.setAttribute("message","Tao thanh cong !");
+                userDAO.insertUser(userNew);
+                RequestDispatcher view = req.getRequestDispatcher("/register.jsp");
+                view.forward(req,resp);
+            }else {
+                req.setAttribute("message","Tai khoan da ton tai !");
+                RequestDispatcher view = req.getRequestDispatcher("/register.jsp");
+                view.forward(req,resp);
+            };
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }

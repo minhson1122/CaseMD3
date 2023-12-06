@@ -10,4 +10,7 @@ public interface IUserDAO {
     public List<User> selectAllUser();
     public boolean deleteUser(int id) throws SQLException;
     public boolean updateUser(User user) throws SQLException;
+    public boolean checkUser(String username, String password) throws SQLException;
+    public boolean checkAccountAdmin(String username,String password,String role) throws SQLException;
+    public boolean checkRegister(String email,String username) throws SQLException;
 }

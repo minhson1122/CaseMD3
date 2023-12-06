@@ -38,12 +38,12 @@
             <span class="message">${requestScope["message"]}</span>
         </c:if>
     </p>
-    <h4 class="text-center">Đăng ký</h4>
+    <h4 class="text-center">Đăng Ký</h4>
 
     <form method="post">
         <div class="mb-3">
-            <label for="full_name" class="form-label">Full Name:</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" required>
+            <label for="name" class="form-label">Full Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
@@ -60,6 +60,12 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
             <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div>
+            <label >Role:</label>
+            <select id="role" name="role">
+                <option value="user">User</option>
+            </select><br>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Register</button>
