@@ -1,4 +1,4 @@
-package com.example.casestudymd3;
+package com.example.casestudymd3.AccountModel;
 
 import com.example.casestudymd3.model.User;
 import com.example.casestudymd3.model.UserDAO;

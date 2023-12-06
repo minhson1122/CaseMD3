@@ -22,15 +22,17 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6 title-text">
-                        <h1>Danh Sach Khach Hang</h1>
+                        <h1 style="text-align: center">Danh Sach Khach Hang</h1>
                         <a href="/admin?action=create" class="btn btn-success">Add new</a>
+
                     </div>
-                    <div class="col-md-6">
-                        <form action="/list" method="get">
-                            <input type="text" name="keyword" value="<c:out value="${keyword}"/>">
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
+<%--                    <div class="col-md-4">--%>
+<%--                        <form action="/list" method="get">--%>
+<%--                            <input type="text" name="keyword" value="<c:out value="${keyword}"/>">--%>
+<%--                            <button type="submit">Search</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+
                 </div>
 
 
@@ -39,7 +41,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
+<%--                        <th scope="col">Id</th>--%>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
@@ -51,17 +53,17 @@
                     <tbody>
                     <c:forEach items="${listUsers}" var="user">
                         <tr>
-                            <td><c:out value="${user.getId()}"/></td>
+<%--                            <td><c:out value="${user.getId()}"/></td>--%>
                             <td><c:out value="${user.getName()}"/></td>
                             <td><c:out value="${user.getEmail()}"/></td>
                             <td><c:out value="${user.getAddress()}"/></td>
                             <td><c:out value="${user.getUserName()}"/></td>
                             <td><c:out value="${user.getPassword()}"/></td>
 
-<%--                            <td>--%>
-<%--                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}/admin?action=delete&id=<c:out value="${user.getId()}"/>" class="btn btn-danger">Delete</a>--%>
-<%--                                <a href="${pageContext.request.contextPath}/users?action=update&id=<c:out value="${user.getId()}"/>" class="btn btn-primary">Update</a>--%>
-<%--                            </td>--%>
+                            <td>
+                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}/admin?action=delete&id=<c:out value="${user.getId()}"/>" class="btn btn-danger">Delete</a>
+                                <a href="${pageContext.request.contextPath}/admin?action=update&id=<c:out value="${user.getId()}"/>" class="btn btn-primary">Update</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

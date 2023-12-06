@@ -1,4 +1,4 @@
-package com.example.casestudymd3;
+package com.example.casestudymd3.AccountModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -16,7 +16,7 @@ public class UserDAO implements IUserDAO {
     private static final String SELECT_USER_BY_ID = "SELECT id,name,email,address,username,password FROM user WHERE id = ?";
     private static final String SELECT_USER_ALL = "SELECT * FROM user";
     private static final String DELETE_USER_SQL = "DELETE FROM user WHERE id = ?";
-    private static final String UPDATE_USER_SQL = "UPDATE user SET name = ?, email = ?, address = ?,username = ?,password = ?";
+    private static final String UPDATE_USER_SQL = "UPDATE user SET name = ?, email = ?, address = ?,username = ?,password = ? WHERE id = ?";
 
 
     protected Connection getConnect(){
@@ -121,9 +121,12 @@ public class UserDAO implements IUserDAO {
             statement.setString(3, user.getAddress());
             statement.setString(4, user.getUserName());
             statement.setString(5, user.getPassword());
+            statement.setInt(6,user.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
     }
+
+
 }

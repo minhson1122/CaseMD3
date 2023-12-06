@@ -3,6 +3,7 @@ package com.example.casestudymd3;
 import com.example.casestudymd3.model.User;
 import com.example.casestudymd3.model.UserDAO;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,20 @@ public class AdminServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "delete":
+                try {
+                    deleteUser(req,resp);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "update":
+                try {
+                    showEditUser(req,resp);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 listUsers(req, resp);
                 break;
@@ -53,6 +68,13 @@ public class AdminServlet extends HttpServlet {
             case "create":
                 insertUser(req,resp);
                 break;
+            case "update":
+                try {
+                    updateUser(req,resp);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 break;
         }
@@ -66,7 +88,6 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void insertUser(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-//        int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String address = req.getParameter("address");
@@ -84,5 +105,38 @@ public class AdminServlet extends HttpServlet {
     private void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws Exception,ServletException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/add.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException,SQLException,IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDAO.deleteUser(id);
+        List<User> listUsers = userDAO.selectAllUser();
+        request.setAttribute("listUsers",listUsers);
+        RequestDispatcher view = request.getRequestDispatcher("/admin/list.jsp");
+        view.forward(request,response);
+    }
+
+    private void updateUser(HttpServletRequest request,HttpServletResponse response) throws SQLException,IOException,ServletException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        User userNew = new User(id,name,email,address,username,password);
+        userDAO.updateUser(userNew);
+        request.setAttribute("message","Da sua thanh cong !");
+        RequestDispatcher view = request.getRequestDispatcher("/admin/edit.jsp");
+        view.forward(request,response);
+    }
+
+    private void showEditUser(HttpServletRequest request, HttpServletResponse response) throws SQLException,ServletException,IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        User existingUser = userDAO.selectUser(id);
+        RequestDispatcher view = request.getRequestDispatcher("/admin/edit.jsp");
+        request.setAttribute("user",existingUser);
+        view.forward(request,response);
     }
 }

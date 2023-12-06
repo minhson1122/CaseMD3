@@ -1,4 +1,4 @@
-package com.example.casestudymd3;
+package com.example.casestudymd3.AccountModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +12,7 @@ import java.util.Objects;
 
 @WebServlet(name="LoginServlet", urlPatterns = "/account/login")
 public class LoginServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
