@@ -144,4 +144,33 @@ public class GameDAO implements IGameDAO {
         }
         return rowUpdated;
     }
+
+    @Override
+    public List<Game> search(String key) {
+        // viet cau lenh SQL;
+        List<Game> games = new ArrayList<Game>();
+        try {
+            Connection conn = getConnect();
+            String sql = "SELECT * FROM users WHERE name LIKE ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, '%' + key + '%');
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+
+                String title = rs.getString(1);
+                int price = Integer.parseInt(rs.getString(2));
+                String description = rs.getString(3);
+                String genre = rs.getString(4);
+                String rating = rs.getString(5);
+                String totalDownload = rs.getString(6);
+                String developer = rs.getString(7);
+
+                Game game = new Game( title, price, description, genre, rating,totalDownload,developer);
+                games.add(game);
+            }
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return games;
+    }
 }

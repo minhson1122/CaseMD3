@@ -9,4 +9,5 @@ public interface IGameDAO {
     public List<Game> selectAllGame();
     public boolean deleteGame(int id) throws SQLException;
     public boolean updateGame(Game game) throws SQLException;
+    List<Game> search(String key);
 }

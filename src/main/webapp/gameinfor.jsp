@@ -133,7 +133,10 @@
 </header>
 <br>
 <main>
-    <button> <a href="/cart">Thêm vào giỏ hàng</a></button>
+    <form action="cart" method = post>
+        <button type="submit">Thêm vào giỏ hàng</button>
+    </form>
+
 <%--<a href="/cart">Ấn vào đây để thêm vào giỏ hàng</a>--%>
 
 </main>

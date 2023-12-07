@@ -2,7 +2,6 @@ package com.example.casestudymd3.model;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.sql.DriverManager.getConnection;
@@ -17,6 +16,7 @@ public class UserDAO implements IUserDAO {
     private static final String SELECT_USER_ALL = "SELECT * FROM user";
     private static final String DELETE_USER_SQL = "DELETE FROM user WHERE id = ?";
     private static final String UPDATE_USER_SQL = "UPDATE user SET name = ?, email = ?, address = ?,username = ?,password = ?,role = ? WHERE id = ?";
+    private static final String UPDATE_USER_SQL_BY_USERNAME = "UPDATE user SET name = ?, address = ?,password = ? WHERE username = ?";
 
 
 
@@ -134,6 +134,26 @@ public class UserDAO implements IUserDAO {
         return rowUpdated;
     }
 
+    public boolean updateUserByName(String name,String address,String username,String password) throws SQLException {
+
+
+        try (Connection connection = getConnect();
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL_BY_USERNAME)) {
+            preparedStatement.setString(1, name);
+//            preparedStatement.setString(2, email);
+            preparedStatement.setString(2, address);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, username);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            return rowsAffected > 0; // Trả về true nếu có ít nhất một dòng được cập nhật
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public boolean checkUser(String username, String password) throws SQLException {
         try (Connection connection = getConnect();
@@ -169,6 +189,43 @@ public class UserDAO implements IUserDAO {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    public User getUserByUsername(String username) {
+        String sql = "SELECT * FROM user WHERE username = ?";
+        try (PreparedStatement preparedStatement = getConnect().prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Lấy thông tin người dùng từ ResultSet và trả về
+                    User user = new User();
+                    user.setName(resultSet.getString("name"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setAddress(resultSet.getString("address"));
+                    user.setUserName(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+
+                    // Thêm các thông tin khác tương ứng
+
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Trả về null nếu không tìm thấy người dùng
+    }
+
+    public void closeConnection() {
+        Connection connection = null;
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

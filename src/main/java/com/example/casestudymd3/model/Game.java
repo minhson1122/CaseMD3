@@ -67,6 +67,7 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
+
     public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate) {
         this.id = id;
         this.title = title;
