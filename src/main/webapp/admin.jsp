@@ -13,6 +13,6 @@
 <body>
 <p>Đây là trang admin</p>
 <a href="/admin/listuserdata">Ấn vào đây để xem list users</a>
-<a href="/listgamedata">Ấn vào đây để xem list games</a>
+<a href="/admin/listgamedata">Ấn vào đây để xem list games</a>
 </body>
 </html>

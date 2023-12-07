@@ -114,7 +114,7 @@
 <%}%>
 <header>
     <!-- Your logo/image goes here -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Your Logo" height="50">
+    <a href="/home"> <img  src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Your Logo" height="50"></a>
 
     <div id="search-container">
         <input type="text" id="search-input" placeholder="Search">
@@ -133,13 +133,28 @@
 </header>
 <br>
 <main>
-
-<a href="/cart">Ấn vào đây để thêm vào giỏ hàng</a>
+    <button> <a href="/cart">Thêm vào giỏ hàng</a></button>
+<%--<a href="/cart">Ấn vào đây để thêm vào giỏ hàng</a>--%>
 
 </main>
 <footer>
     <p>Home</p>
 </footer>
+
+<%--<script>--%>
+<%--    function addToCart() {--%>
+<%--        var username = '<%= session.getAttribute("username") %>';--%>
+<%--        if (username == null || username === '') {--%>
+<%--            alert("Bạn cần đăng nhập để mua game.");--%>
+<%--        } else {--%>
+<%--            // Thực hiện thêm game vào giỏ hàng--%>
+<%--            // ...--%>
+<%--            // Chuyển hướng sang trang cart.jsp--%>
+<%--            window.location.href = 'cart.jsp';--%>
+<%--        }--%>
+<%--    }--%>
+<%--</script>--%>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

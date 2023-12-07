@@ -11,13 +11,14 @@ import java.util.List;
 import static java.sql.DriverManager.getConnection;
 
 public class GameDAO implements IGameDAO {
-    String url = "jdbc:mysql://localhost:3306/shopgame?userSSL=false";
+    String url = "jdbc:mysql://localhost:3306/shopgame?gamesSSL=false";
     String username = "root";
-    String password = "kiseki99!!";
+    String password = "Trung123@";
 
-    private static final String DELETE_GAME_SQL = "delete from game where id = ?;";
-    private static final String UPDATE_GAME_SQL = "update game set title = ?, price = ?,description = ?, genre = ?, rating = ?, TotalDownload = ? , Developer = ?, releaseDate = ?, purchased = ? where id = ?;";
-
+    private static final String DELETE_GAME_SQL = "DELETE FROM games WHERE id = ?;";
+    private static final String UPDATE_GAME_SQL = "update games set title = ?, price = ?,description = ?, genre = ?, rating = ?, totaldownload = ? , developer = ?, releasedate = ? where id = ?";
+    private static final String INSERT_GAME_SQL = "INSERT INTO games (title,price,description,genre,rating,developer,releasedate) VALUES (?, ?, ?,?,?,?,?);";
+    private static final String SELECT_GAME_BY_ID = "select title,price,description,genre,rating,totaldownload,developer,releasedate FROM games WHERE id =?";
     protected Connection getConnect() {
 
         Connection connection = null;
@@ -37,12 +38,50 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public void insertGame(Game game) {
-
+        System.out.println(INSERT_GAME_SQL);
+        try (Connection connection = getConnect(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_GAME_SQL)) {
+            preparedStatement.setString(1, game.getTitle());
+            preparedStatement.setInt(2, game.getPrice());
+            preparedStatement.setString(3, game.getDescription());
+            preparedStatement.setString(4, game.getGenre());
+            preparedStatement.setString(5, game.getRating());
+            preparedStatement.setString(6, game.getDeveloper());
+            preparedStatement.setString(7, game.getReleaseDate());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Game selectGame(int id) {
-        return null;
+        Game game = null;
+        try(
+                Connection connection = getConnect();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_GAME_BY_ID);)
+
+        {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                String title = rs.getString("title");
+                int price = rs.getInt("price");
+                String description = rs.getString("description");
+                String genre = rs.getString("genre");
+                String rating = rs.getString("rating");
+                int totalDownload = rs.getInt("totalDownload");
+                String developer = rs.getString("developer");
+                String releasDate = rs.getString("releasedate");
+                game = new Game(title, price, description, genre, rating, totalDownload, developer, releasDate);
+
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return game;
     }
 
     @Override
@@ -62,10 +101,10 @@ public class GameDAO implements IGameDAO {
                 int price = rs.getInt("price");
                 String Description = rs.getString("Description");
                 String Genre = rs.getString("Genre");
-                double Rating = rs.getDouble("Rating");
+                String Rating = rs.getString("Rating");
                 int Totaldowload = rs.getInt("TotalDownload");
                 String Developer = rs.getString("Developer");
-                Date ReleaseDate = rs.getDate("ReleaseDate");
+                String ReleaseDate = rs.getString("ReleaseDate");
                 boolean Purchased = rs.getBoolean("Purchased");
                 Game game = new Game(id, title, price, Description, Genre, Rating, Totaldowload, Developer, ReleaseDate, Purchased);
                 gamelist.add(game);
@@ -94,12 +133,14 @@ public class GameDAO implements IGameDAO {
             statement.setInt(2, game.getPrice());
             statement.setString(3, game.getDescription());
             statement.setString(4, game.getGenre());
-            statement.setDouble(5, game.getRating());
+            statement.setString(5, game.getRating());
             statement.setInt(6, game.getTotalDownload());
             statement.setString(7, game.getDeveloper());
-            statement.setDate(8, game.getReleaseDate());
-
+            statement.setString(8, game.getReleaseDate());
+            statement.setInt(9,game.getId());
+            System.out.println(statement);
             rowUpdated = statement.executeUpdate() > 0;
+            System.out.println("OK");
         }
         return rowUpdated;
     }

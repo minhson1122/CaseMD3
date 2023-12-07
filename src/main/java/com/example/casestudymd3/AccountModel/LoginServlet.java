@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         try {
             if (!this.userDAO.checkUser(username, password)) {
                 req.setAttribute("error", "Username and password invalid.");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
                 dispatcher.forward(req, resp);
             }else {
                 if (!this.userDAO.checkAccountAdmin(username,password,role)) {

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.casestudymd3.model.Game" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 12/4/2023
@@ -99,6 +100,18 @@
             bottom: 0;
             width: 100%;
         }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .game {
+            width: 20%;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -114,7 +127,8 @@
 <%}%>
 <header>
     <!-- Your logo/image goes here -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Your Logo" height="50">
+    <a href="/home"> <img  src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Your Logo" height="50"></a>
+
 
     <div id="search-container">
         <input type="text" id="search-input" placeholder="Search">
@@ -123,79 +137,50 @@
     <div>
         <% if (username != null) { %>
         <button><a href="logout">Đăng xuất</a></button>
-        <button><a href="account/login">Đăng nhập</a></button>
-        <button><a href="account/register">Đăng ký</a></button>
+        <button><a href="/cart">Đây là ô giỏ hàng</a></button>
+        <button><a href="/infor">Hiện thông tin user</a></button>
         <% } else { %>
         <button><a href="account/login">Đăng nhập</a></button>
         <button><a href="account/register">Đăng ký</a></button>
         <% } %>
+
     </div>
 </header>
 <br>
-<nav>
-    <a href="#">Home</a>
-    <a href="#">Consoles</a>
-    <a href="#">Accessories</a>
-    <a href="#">Games</a>
-    <a href="#">My Order</a>
-    <a href="#">Cart</a>
-</nav>
 <main>
-    <div class="sidebar">
-        <h2>Categories</h2>
-        <ul>
-            <li>Consoles
-                <ul>
-                    <li>Nintendo Switch</li>
-                    <li>Nintendo 3DS</li>
-                </ul>
-            </li>
-            <li>Accessories</li>
-            <li>Games
-                <ul>
-                    <li>Sega</li>
-                    <li>Gamefreak</li>
-                    <li>Ubisoft</li>
-                    <!-- Add more developers as needed -->
-                </ul>
-            </li>
-        </ul>
+
+<%--<div>--%>
+<%--    <div class="card-body">--%>
+<%--        <table class="table">--%>
+<%--            <thead>--%>
+<%--            </thead>--%>
+<%--            <tbody>--%>
+<%--            <c:forEach items="${games}" var="game">--%>
+<%--                <tr>--%>
+<%--                    <td><c:out value="${game.getTitle()}"/></td>--%>
+<%--                    <td><c:out value="${game.getPrice()}"/></td>--%>
+<%--                    <td><c:out value="${game.getRating()}"/></td>--%>
+
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
+<%--            </tbody>--%>
+<%--        </table>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+    <div class="game-container">
+        <% List<Game> games = (List<Game>) request.getAttribute("games"); %>
+
+        <% for (Game game : games) { %>
+        <div class="game">
+<%--            <img src="<%= game.getImageUrl() %>" alt="<%= game.getName() %>">--%>
+            <p><a href="gameinfor.jsp"><strong><%= game.getTitle() %></strong></a></p>
+            <p>Price: $<%= game.getPrice() %></p>
+            <p>Rating: <%= game.getRating() %></p>
+        </div>
+        <% } %>
     </div>
 
-    <div class="content">
-        <!-- Example product -->
-        <div class="product">
-            <img src="product_image1.jpg" alt="Product 1">
-            <h3>Product Title 1</h3>
-            <p>Product Description 1</p>
-            <button>Add to Cart</button>
-            <button>Reviews</button>
-        </div>
-
-        <!-- Repeat the above structure for other products -->
-        <div class="product">
-            <img src="product_image2.jpg" alt="Product 2">
-            <h3>Product Title 2</h3>
-            <p>Product Description 2</p>
-            <button>Add to Cart</button>
-            <button>Reviews</button>
-        </div>
-        <div class="product">
-            <img src="product_image3.jpg" alt="Product 3">
-            <h3>Product Title 2</h3>
-            <p>Product Description 2</p>
-            <button>Add to Cart</button>
-            <button>Reviews</button>
-        </div>
-        <div class="product">
-            <img src="product_image4.jpg" alt="Product 4">
-            <h3>Product Title 2</h3>
-            <p>Product Description 2</p>
-            <button>Add to Cart</button>
-            <button>Reviews</button>
-        </div>
-        <!-- Repeat the above structure for other products -->
-    </div>
 </main>
 <footer>
     <p>Home</p>

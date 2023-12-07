@@ -21,16 +21,14 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-6 title-text">
+                    <div style="text-align: center">
                         <h1>Danh Sach Game</h1>
-                        <a href="/admin?action=create" class="btn btn-success">Add new</a>
                     </div>
-                    <div class="col-md-6">
-                        <form action="/listgamedata" method="get">
-                            <input type="text" name="keyword" value="<c:out value="${keyword}"/>">
-                            <button type="submit">Search</button>
-                        </form>
+                    <div>
+                        <a href="?action=create" class="btn btn-success">Add new</a>
+                        <a href="/admin.jsp" class="btn btn-success">Quay Lai</a>
                     </div>
+
                 </div>
 
 
@@ -39,7 +37,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
+<%--                        <th scope="col">Id</th>--%>
                         <th scope="col">Title</th>
                         <th scope="col">Price</th>
                         <th scope="col">Description</th>
@@ -54,7 +52,7 @@
                     <tbody>
                     <c:forEach items="${games}" var="game">
                         <tr>
-                            <td><c:out value="${game.getId()}"/></td>
+<%--                            <td><c:out value="${game.getId()}"/></td>--%>
                             <td><c:out value="${game.getTitle()}"/></td>
                             <td><c:out value="${game.getPrice()}"/></td>
                             <td><c:out value="${game.getDescription()}"/></td>
@@ -64,10 +62,10 @@
                             <td><c:out value="${game.getDeveloper()}"/></td>
                             <td><c:out value="${game.getReleaseDate()}"/></td>
 
-                                <%--                            <td>--%>
-                                <%--                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}/admin?action=delete&id=<c:out value="${user.getId()}"/>" class="btn btn-danger">Delete</a>--%>
-                                <%--                                <a href="${pageContext.request.contextPath}/users?action=update&id=<c:out value="${user.getId()}"/>" class="btn btn-primary">Update</a>--%>
-                                <%--                            </td>--%>
+                            <td>
+                                <a onclick="return confirm('Are you sure?')" href="${pageContext.request.contextPath}?action=delete&id=<c:out value="${game.getId()}"/>" class="btn btn-danger">Delete</a>
+                                <a href="${pageContext.request.contextPath}?action=update&id=<c:out value="${game.getId()}"/>" class="btn btn-primary">Update</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

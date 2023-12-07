@@ -1,3 +1,5 @@
+import com.example.casestudymd3.model.UserDAO;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +10,10 @@ import java.io.IOException;
 
 @WebServlet(name = "inforUserServlet", urlPatterns = "/infor")
 public class inforUserServlet extends HttpServlet {
+    private UserDAO userDAO;
     @Override
     public void init() throws ServletException {
-        super.init();
+        userDAO = new UserDAO();
     }
 
     @Override

@@ -24,7 +24,7 @@
                     <div class="col-md-12 title-text">
                         <h1 style="text-align: center">Danh Sach Khach Hang</h1>
                         <a href="?action=create" class="btn btn-success">Add new</a>
-                        <a href="/home" class="btn btn-success">Trang Chu</a>
+                        <a href="/admin.jsp" class="btn btn-success">Quay Lai</a>
 
                     </div>
 <%--                    <div class="col-md-4">--%>

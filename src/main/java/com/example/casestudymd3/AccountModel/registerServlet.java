@@ -23,7 +23,7 @@ public class registerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher view = req.getRequestDispatcher("/register.jsp");
+        RequestDispatcher view = req.getRequestDispatcher("/user/register.jsp");
         view.forward(req,resp);
     }
 
@@ -41,11 +41,11 @@ public class registerServlet extends HttpServlet {
             if (!userDAO.checkRegister(email,username)){
                 req.setAttribute("message","Tao thanh cong !");
                 userDAO.insertUser(userNew);
-                RequestDispatcher view = req.getRequestDispatcher("/register.jsp");
+                RequestDispatcher view = req.getRequestDispatcher("/user/register.jsp");
                 view.forward(req,resp);
             }else {
                 req.setAttribute("message","Tai khoan da ton tai !");
-                RequestDispatcher view = req.getRequestDispatcher("/register.jsp");
+                RequestDispatcher view = req.getRequestDispatcher("/user/register.jsp");
                 view.forward(req,resp);
             };
         } catch (SQLException e) {
