@@ -28,6 +28,9 @@
             color: white;
             padding: 10px;
             text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
         }
@@ -130,10 +133,10 @@
     <a href="/home"> <img  src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Your Logo" height="50"></a>
 
 
-    <div id="search-container">
-        <input type="text" id="search-input" placeholder="Search">
-        <button id="search-button">Search</button>
-    </div>
+    <form method="get">
+        <input type="text" id="searchGame" name="searchGame">
+        <input type="submit" value="Tìm kiếm">
+    </form>
     <div>
         <% if (username != null) { %>
         <button><a href="logout">Đăng xuất</a></button>
@@ -148,26 +151,6 @@
 </header>
 <br>
 <main>
-
-<%--<div>--%>
-<%--    <div class="card-body">--%>
-<%--        <table class="table">--%>
-<%--            <thead>--%>
-<%--            </thead>--%>
-<%--            <tbody>--%>
-<%--            <c:forEach items="${games}" var="game">--%>
-<%--                <tr>--%>
-<%--                    <td><c:out value="${game.getTitle()}"/></td>--%>
-<%--                    <td><c:out value="${game.getPrice()}"/></td>--%>
-<%--                    <td><c:out value="${game.getRating()}"/></td>--%>
-
-<%--                </tr>--%>
-<%--            </c:forEach>--%>
-<%--            </tbody>--%>
-<%--        </table>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
     <div class="game-container">
         <% List<Game> games = (List<Game>) request.getAttribute("games"); %>
 

@@ -25,32 +25,21 @@ public class ShopGameServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GameDAO gameDAO = new GameDAO();
-        ArrayList<Game> games = (ArrayList<Game>) gameDAO.selectAllGame();
-        req.setAttribute("games", games);
-        RequestDispatcher view = req.getRequestDispatcher("/home.jsp");
-        view.forward(req,resp);
-
-        showListUser(req,resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchGame = request.getParameter("searchGame");
+        if (searchGame != null && !searchGame.isEmpty()) {
+            List<Game> games = gameDAO.getGamesBySearch(searchGame);
+            request.setAttribute("games", games);
+        } else {
+            List<Game> games = gameDAO.selectAllGame();
+            request.setAttribute("games", games);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
-    }
-
-    public void showListUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String keyword = req.getParameter("keyword");
-        List<Game> data;
-        if (keyword == null) {
-            data =  this.gameDAO.selectAllGame();
-        } else {
-            data =  this.gameDAO.search(keyword);
-        }
-        req.setAttribute("keyword", keyword);
-        req.setAttribute("users", data);
-        RequestDispatcher view = req.getRequestDispatcher("/home");
-        view.forward(req, resp);
     }
 }

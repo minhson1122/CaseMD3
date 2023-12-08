@@ -115,6 +115,37 @@ public class GameDAO implements IGameDAO {
         return gamelist;
     }
 
+    public List<Game> getGamesBySearch(String searchGame) {
+        List<Game> games = new ArrayList<>();
+
+        String sql = "SELECT * FROM games WHERE title LIKE ?";
+        try (Connection connection = getConnect();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, "%" + searchGame + "%");
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String title = rs.getString("title");
+                    int price = rs.getInt("price");
+                    String Description = rs.getString("Description");
+                    String Genre = rs.getString("Genre");
+                    String Rating = rs.getString("Rating");
+                    int Totaldowload = rs.getInt("TotalDownload");
+                    String Developer = rs.getString("Developer");
+                    String ReleaseDate = rs.getString("ReleaseDate");
+                    boolean Purchased = rs.getBoolean("Purchased");
+                    Game game = new Game(id, title, price, Description, Genre, Rating, Totaldowload, Developer, ReleaseDate, Purchased);
+                    games.add(game);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return games;
+    }
+
     @Override
     public boolean deleteGame(int id) throws SQLException {
         boolean rowDeleted;
@@ -162,7 +193,7 @@ public class GameDAO implements IGameDAO {
                 String description = rs.getString(3);
                 String genre = rs.getString(4);
                 String rating = rs.getString(5);
-                String totalDownload = rs.getString(6);
+                int totalDownload = Integer.parseInt(rs.getString(6));
                 String developer = rs.getString(7);
 
                 Game game = new Game( title, price, description, genre, rating,totalDownload,developer);

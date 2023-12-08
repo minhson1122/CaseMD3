@@ -5,8 +5,6 @@ import java.util.Date;
 public class Game {
     private int id;
     private String title;
-
-    private String urlImage;
     private int price;
     private String description;
     private String genre;
@@ -20,8 +18,10 @@ public class Game {
 
     //Sử dụng để deactivate game muốn loại khỏi cửa hàng
     private boolean isActive;
+    private String urlCover;
+    private String urlWallpaper;
 
-    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased) {
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased, boolean isActive, String urlCover, String urlWallpaper) {
         this.title = title;
         this.price = price;
         this.description = description;
@@ -31,6 +31,32 @@ public class Game {
         this.developer = developer;
         this.releaseDate = releaseDate;
         this.purchased = purchased;
+        this.isActive = isActive;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(String title, int price, String description, String genre, String rating, String developer, String releaseDate) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+    }
+
+
+
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
     }
 
     public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased) {
@@ -46,17 +72,18 @@ public class Game {
         this.purchased = purchased;
     }
 
-    public Game(String title, int price, String description, String genre, String rating, String developer, String releaseDate) {
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer) {
         this.title = title;
         this.price = price;
         this.description = description;
         this.genre = genre;
         this.rating = rating;
+        this.totalDownload = totalDownload;
         this.developer = developer;
-        this.releaseDate = releaseDate;
     }
 
-    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate) {
+    public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased, boolean isActive, String urlCover, String urlWallpaper) {
+        this.id = id;
         this.title = title;
         this.price = price;
         this.description = description;
@@ -65,8 +92,23 @@ public class Game {
         this.totalDownload = totalDownload;
         this.developer = developer;
         this.releaseDate = releaseDate;
+        this.purchased = purchased;
+        this.isActive = isActive;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
     }
 
+    public Game(String title, int price, String description, String genre, String rating, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
 
     public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate) {
         this.id = id;
@@ -78,6 +120,34 @@ public class Game {
         this.totalDownload = totalDownload;
         this.developer = developer;
         this.releaseDate = releaseDate;
+    }
+
+
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
     }
 
     public int getId() {
@@ -158,5 +228,29 @@ public class Game {
 
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getUrlCover() {
+        return urlCover;
+    }
+
+    public void setUrlCover(String urlCover) {
+        this.urlCover = urlCover;
+    }
+
+    public String getUrlWallpaper() {
+        return urlWallpaper;
+    }
+
+    public void setUrlWallpaper(String urlWallpaper) {
+        this.urlWallpaper = urlWallpaper;
     }
 }
