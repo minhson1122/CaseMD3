@@ -1,0 +1,202 @@
+package com.example.casestudymd3.model;
+
+import java.util.Date;
+
+public class Game {
+    private int id;
+    private String title;
+    private int price;
+    private String description;
+    private String genre;
+    private String rating;
+    private int totalDownload;
+    private String developer;
+    private String releaseDate;
+
+    //Sử dụng để chặn người  đã mua game rồi không được mua nữa
+    private boolean purchased;
+
+    //Sử dụng để deactivate game muốn loại khỏi cửa hàng
+    private boolean isActive;
+    private String urlCover;
+    private String urlWallpaper;
+
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased, boolean isActive, String urlCover, String urlWallpaper) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.purchased = purchased;
+        this.isActive = isActive;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, boolean purchased, boolean isActive, String urlCover, String urlWallpaper) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.purchased = purchased;
+        this.isActive = isActive;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(String title, int price, String description, String genre, String rating, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(int id, String title, int price, String description, String genre, String rating, int totalDownload, String developer, String releaseDate, String urlCover, String urlWallpaper) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.genre = genre;
+        this.rating = rating;
+        this.totalDownload = totalDownload;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.urlCover = urlCover;
+        this.urlWallpaper = urlWallpaper;
+    }
+
+    public Game(int id, String title, int price, String rating, String urlCover) {
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public int getTotalDownload() {
+        return totalDownload;
+    }
+
+    public void setTotalDownload(int totalDownload) {
+        this.totalDownload = totalDownload;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public boolean isPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getUrlCover() {
+        return urlCover;
+    }
+
+    public void setUrlCover(String urlCover) {
+        this.urlCover = urlCover;
+    }
+
+    public String getUrlWallpaper() {
+        return urlWallpaper;
+    }
+
+    public void setUrlWallpaper(String urlWallpaper) {
+        this.urlWallpaper = urlWallpaper;
+    }
+}
